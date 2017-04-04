@@ -13,3 +13,17 @@ UI_DIR      = $$DESTDIR/ui
 
 CONFIG += plugin c++11
 CODECFORTR = UTF-8
+
+# Code coverage
+@
+T = $$(TRAVIS)
+!isEmpty(T) {
+        unix:!macx {
+                QMAKE_CXXFLAGS -= -O2
+                QMAKE_CXXFLAGS_RELEASE -= -O2
+
+                LIBS += -lgcov
+                QMAKE_CXXFLAGS += -g -fprofile-arcs -ftest-coverage -O0 --coverage
+        }
+}
+@
