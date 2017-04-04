@@ -24,6 +24,7 @@ T = $$(TRAVIS)
 
                 LIBS += -lgcov
                 QMAKE_CXXFLAGS += -g -fprofile-arcs -ftest-coverage -O0 --coverage
+                QMAKE_LFLAGS += -g -fprofile-arcs -ftest-coverage -O0 --coverage
         }
 }
 @
