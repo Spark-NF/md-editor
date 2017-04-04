@@ -9,7 +9,9 @@ TEMPLATE = app
 
 INCLUDEPATH += $${PWD}/src/ $${PDIR}/lib/src
 SOURCES += \
-	$${PWD}/src/test-suite.cpp \
-	$${PWD}/src/main.cpp
+    $${PWD}/src/test-suite.cpp \
+    $${PWD}/src/main.cpp \
+    $${PWD}/src/pandoc-test.cpp
 HEADERS += \
-	$${PWD}/src/test-suite.h
+    $${PWD}/src/test-suite.h \
+    $${PWD}/src/pandoc-test.h
