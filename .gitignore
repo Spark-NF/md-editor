@@ -1,3 +1,6 @@
+build/
+target_wrapper.bat
+
 # C++ objects and libs
 
 *.slo
