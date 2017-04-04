@@ -1,0 +1,42 @@
+language: cpp
+compiler: gcc
+
+# Linux build
+sudo: required
+dist: trusty
+
+# OS X build
+matrix:
+  include:
+    - os: osx
+
+# Qt for Linux
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:ubuntu-sdk-team/ppa'
+    packages:
+      - qtbase5-dev
+      - qt5-qmake
+      - qt5-default
+      - qttools5-dev-tools
+
+# Qt for OS X
+install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      brew update &&
+      brew install qt5 &&
+      QT_PATH=$(find /usr/local/Cellar/qt5/* -maxdepth 0 -type d | head -1)
+      PATH=$QT_PATH/bin:$PATH &&
+      export PATH
+    ; fi
+
+# Build
+script:
+  - qmake Markdown.pro
+  - make
+  - ./tests/build/release/tests
+
+# Code coverage
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
